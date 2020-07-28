@@ -49,4 +49,6 @@ def do_logout():
 
 @app.route('/')
 def show_homepage():
-    return "Welcome to informed voter!"
+    """Return Homepage"""
+
+    return render_template('home-anon.html')
