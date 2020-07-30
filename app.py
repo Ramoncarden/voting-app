@@ -1,7 +1,9 @@
 import os
 from flask import Flask, render_template, request, flash, redirect, session, g, abort
 from flask_debugtoolbar import DebugToolbarExtension
+from sqlalchemy.exc import IntegrityError
 
+from forms import UserAddForm
 from models import db, connect_db, User
 
 CURR_USER_KEY = 'curr_user'
@@ -19,6 +21,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'secert_voter2020')
 
 connect_db(app)
+db.create_all()
 
 # *************************************************
 # User signup, login, and logout
@@ -52,3 +55,41 @@ def show_homepage():
     """Return Homepage"""
 
     return render_template('home-anon.html')
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    """Handle user signup.
+
+    Create new user and add to db. Redirect to home page.
+
+    If form not valid, present form.
+
+    If user already exists with submitted username: flash error message and
+    re-present form
+    """
+
+    form = UserAddForm()
+
+    if form.validate_on_submit():
+        try:
+            user = User.signup(
+                email=form.email.data,
+                username=form.username.data,
+                password=form.password.data,
+            )
+            db.session.commit()
+
+        except IntegrityError:
+            flash('Username already exists', 'danger')
+            return render_template('users/signup.html', form=form)
+
+        do_login(user)
+        return redirect('/')
+
+    else:
+        return render_template('users/signup.html', form=form)
+
+# @app.route('login', methods=['GET', 'POST'])
+# def login():
+#     """Handle user login"""
