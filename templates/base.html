@@ -12,33 +12,36 @@
 
     <link rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link rel="stylesheet" href="/static/stylesheets/styles.css">
     <link rel="stylesheet" href="/static/stylesheets/bootstrap_theme.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
 
 </head>
 <body class="{% block body_class %}{% endblock %}">
-    <nav class="navbar navbar-expand">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg justify-content-center">
+        <div class="container col-md-9 offset-md-1.5">
           <div class="navbar-header">
             <a href="/" class="navbar-brand">
-              <img src="/static/images/HatchfulExport-All/favicon.png" alt="logo">
-              <span>Informed Voter</span>
+              <img src="/static/images/HatchfulExport-All/pinterest_profile_image.png" alt="logo" id="logo-thumbnail">
+              <span class="ml-3" id='brand-name'>Informed Voter</span>
             </a>
           </div>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-center">
             {% if request.endpoint != None %}
-            <li>
-              <form class="navbar-form navbar-right" action="/users">
-                <input name="q" class="form-control" placeholder="Search Records" id="search">
-                <button class="btn btn-default">
-                  <span class="fa fa-search"></span>
-                </button>
-              </form>
+            <li class="nav-item active nav-left"><a class="nav-link" href="/search">Search</a></li>
+              <!-- <form class="navbar-form navbar-center" action="/users">
+                <input name="q" class="form-control" placeholder="Search Records" id="search"> -->
+                <!-- <button class="btn btn-default"> -->
+                  <!-- <span class="fa fa-search"></span> -->
+                <!-- </button> -->
+              <!-- </form> -->
+
             </li>
             {% endif %}
             {% if not g.user %}
-            <li><a href="/signup">Sign up</a></li>
-            <li><a href="/login">Log in</a></li>
+            <li class="nav-item active nav-left"><a class="nav-link" href="/signup">Sign up</a></li>
+            <li class="nav-item active nav-left"><a class="nav-link" href="/login">Log in</a></li>
             {% else %}
             <li>
               <a href="/users/{{ g.user.id }}">
@@ -50,15 +53,21 @@
           </ul>
         </div>
     </nav>
+    <hr class="nav-hr mt-0 ml-4 mr-4">
+    
 
-
-    <div class="container"> 
+    <div class="container mt-5"> 
         {% for category, message in get_flashed_messages(with_categories=True) %}
-        <div class="alert alert-{{category}}">{{message}}</div>
+        <div class="alert alert-{{category}} mt-3">{{message}}</div>
         {% endfor %}
 
         {% block content %}
         {% endblock %}
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom mt-4 text-left">
+      <div class="container mt-4">
+        <p class="navbar-text text-primary font-weight-light">©Informed Voter 2020</p>
+      </div>
     </div>      
 </body>
 </html>

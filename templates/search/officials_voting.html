@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Voting records for {{member_id}}</h1>
+{% for record in members_data %}
+  <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Bill id: {{record['bill']['bill_id']}}</div>
+    <div class="card-body">
+      <h5 class="card-title">Bill title: {{record['bill']['title']}}</h5>
+      <p class="card-text">Vote description: {{record['description']}}</p>
+      <p class="card-text">Date of vote: {{record['date']}}</p>
+      <p class="card-text">Vote result: {{record['result']}}</p>
+      <p class="card-text">Voting position: <strong>{{record['position']}}</strong></p>
+    </div>
+  </div>
+    <!-- <p>*************************</p>
+    <li>Bill id: {{record['bill']['bill_id']}}</li>
+    <li>Bill title: {{record['bill']['title']}}</li>
+    <li>Vote description: {{record['description']}}</li>
+    <li>Vote result: {{record['result']}}</li>
+    <li>Date of vote: {{record['date']}}</li>
+    <li>Voting position: {{record['position']}}</li>
+    <p>************************</p> -->
+{% endfor %}
+{% endblock %}

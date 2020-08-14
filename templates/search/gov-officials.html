@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<table class="table table-striped">
+    <thead class="bg-secondary">
+        <tr>
+           <th scope="col">id</th> 
+           <th scope="col">First Name</th> 
+           <th scope="col">Last Name</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+             <td><a href="/search/member/{{member['id']}}"> {{ member['id'] }} </a></td>
+             <td> {{ member['first_name'] }} </td>
+             <td> {{ member['last_name'] }} </td>
+        </tr>
+       {% endfor %}
+    </tbody> 
+</table>
+  
+{% endblock %}
+
