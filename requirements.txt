@@ -13,6 +13,7 @@ Faker==4.1.1
 Flask==1.1.2
 Flask-Bcrypt==0.7.1
 Flask-DebugToolbar==0.11.0
+flask-paginate==0.7.0
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
 idna==2.10

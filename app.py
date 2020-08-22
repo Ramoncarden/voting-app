@@ -1,10 +1,12 @@
 import os
 import requests
 import json
-from flask import Flask, render_template, request, flash, redirect, session, g, abort, jsonify
+from flask import Flask, render_template, request, flash, redirect, session, g, abort, jsonify, Blueprint, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from keys import key
+from flask_paginate import Pagination, get_page_parameter
+from urllib.parse import quote
 
 from forms import UserAddForm, LoginForm
 from models import db, connect_db, User
@@ -13,9 +15,12 @@ BASE_URL = 'https://api.propublica.org/congress/v1/'
 MEMBERS_API_URL = 'https://api.propublica.org/congress/v1/116/senate/members.json'
 ALL_MEMBERS = 'https://api.propublica.org/congress/v1/116/senate/members.json'
 MEMBER_VOTE_POSITION_API = 'https://api.propublica.org/congress/v1/members/'
-BILL_API = 'https://api.propublica.org/congress/v1/bills/search.json?query={query}'
+BILL_API = 'https://api.propublica.org/congress/v1/bills/search.json'
+# SPECIFIC_BILL_API = 'https://api.propublica.org/congress/v1/{congress}/bills'
 
 CURR_USER_KEY = 'curr_user'
+
+# mod = Blueprint()
 
 app = Flask(__name__)
 
@@ -201,7 +206,30 @@ def get_member_info(member_id):
 def get_bill_info():
     """Retrieve all bill information"""
 
-    res = requests.get(BILL_API, headers={'X-API-key': key}, params="family")
+    search_term = request.args['search-form-input']
+    # parsed_search_term = quote(search_term)
+    res = requests.get(f"{BILL_API}?query={search_term}", headers={
+                       'X-API-key': key})
     data = res.json()
+    # return data
+    # print(parsed_search_term)
+    search_results = data['results']
+    bill_data = data['results'][0]['bills']
 
-    return data
+    return render_template('search/bill-voting.html', bill_data=bill_data, search_results=search_results)
+
+
+@app.route('/search/bill/<bill_id>')
+def get_bill_by_id(bill_id):
+    """Retrieve individually selected bill"""
+
+    id_no = bill_id.split('-')[0]
+    congress_no = bill_id.split('-')[1]
+
+    res = requests.get(
+        f"{BASE_URL}{congress_no}/bills/{id_no}.json", headers={'X-API-Key': key})
+
+    data = res.json()
+    bill_data = data['results'][0]
+
+    return render_template('search/individual-bill.html', bill_data=bill_data)

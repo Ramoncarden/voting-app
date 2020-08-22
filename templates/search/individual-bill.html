@@ -1,0 +1,1624 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+  <h5 class="card-header">Featured</h5>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <li>{{bill_data['active']}}</li>
+    <a href="/search/bill">back</a>
+  </div>
+</div>
+{% endblock %}
+
+<!-- {
+  "copyright": "Copyright (c) 2020 Pro Publica Inc. All Rights Reserved.", 
+  "results": [
+    {
+      "actions": [
+        {
+          "action_type": "IntroReferral", 
+          "chamber": "House", 
+          "datetime": "2020-08-18", 
+          "description": "Referred to the House Committee on Energy and Commerce.", 
+          "id": 1
+        }
+      ], 
+      "active": false, 
+      "bill": "H.R.8067", 
+      "bill_id": "hr8067-116", 
+      "bill_slug": "hr8067", 
+      "bill_type": "hr", 
+      "bill_uri": "https://api.propublica.org/congress/v1/116/bills/hr8067.json", 
+      "cbo_estimate_url": null, 
+      "committee_codes": [], 
+      "committees": "House Energy and Commerce Committee", 
+      "congress": "116", 
+      "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-bill/8067", 
+      "cosponsors": 3, 
+      "cosponsors_by_party": {
+        "D": 3
+      }, 
+      "enacted": null, 
+      "govtrack_url": "https://www.govtrack.us/congress/bills/116/hr8067", 
+      "gpo_pdf_uri": null, 
+      "house_passage": null, 
+      "house_passage_vote": null, 
+      "introduced_date": "2020-08-18", 
+      "last_vote": null, 
+      "latest_major_action": "Referred to the House Committee on Energy and Commerce.", 
+      "latest_major_action_date": "2020-08-18", 
+      "number": "H.R.8067", 
+      "presidential_statements": [], 
+      "primary_subject": "", 
+      "senate_passage": null, 
+      "senate_passage_vote": null, 
+      "short_title": "To direct the Secretary of Health and Human Services, acting through the Director of the Agency for Healthcare Research and Quality, to conduct or support research related to the United States health care system's response to COVID-19, and for other purpo", 
+      "sponsor": "Donald Beyer", 
+      "sponsor_id": "B001292", 
+      "sponsor_party": "D", 
+      "sponsor_state": "VA", 
+      "sponsor_title": "Rep.", 
+      "sponsor_uri": "https://api.propublica.org/congress/v1/members/B001292.json", 
+      "subcommittee_codes": [], 
+      "summary": "", 
+      "summary_short": "", 
+      "title": "To direct the Secretary of Health and Human Services, acting through the Director of the Agency for Healthcare Research and Quality, to conduct or support research related to the United States health care system's response to COVID-19, and for other purposes.", 
+      "versions": [], 
+      "vetoed": null, 
+      "votes": [], 
+      "withdrawn_cosponsors": 0
+    }
+  ], 
+  "status": "OK"
+} -->
+
+
+
+
+
+
+<!-- // 20200821210635
+// http://127.0.0.1:5000/search/bill/hr2500-116
+
+{
+  "copyright": "Copyright (c) 2020 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "actions": [
+        {
+          "action_type": "Calendars",
+          "chamber": "Senate",
+          "datetime": "2020-08-11",
+          "description": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 512.",
+          "id": 146
+        },
+        {
+          "action_type": "IntroReferral",
+          "chamber": "Senate",
+          "datetime": "2019-09-10",
+          "description": "Received in the Senate.",
+          "id": 145
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The Clerk was authorized to correct section numbers, punctuation, and cross references, and to make other necessary technical and conforming corrections in the engrossment of H.R. 2500.",
+          "id": 144
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The title of the measure was amended. Agreed to without objection.",
+          "id": 143
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Motion to reconsider laid on the table Agreed to without objection.",
+          "id": 142
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "On passage Passed by recorded vote: 220 - 197 (Roll no. 473).",
+          "id": 141
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "On motion to recommit with instructions Failed by recorded vote: 204 - 212 (Roll no. 472).",
+          "id": 140
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The previous question on the motion to recommit with instructions was ordered without objection.",
+          "id": 139
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Floor summary: DEBATE - The House proceeded with 10 minutes of debate on the Thornberry motion to recommit with instructions. The instructions contained in the motion seek to require the bill to be reported back to the House with an amendment to add the following new titles to the bill: Increase in Funding for Operation and Maintenance, Increase in Funding for Military Personnel, and Increase in Basic Pay.",
+          "id": 138
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Mr. Thornberry moved to recommit with instructions to the Committee on Armed Services.",
+          "id": 137
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The previous question was ordered pursuant to the rule.",
+          "id": 136
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 2500.",
+          "id": 135
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+          "id": 134
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Considered as unfinished business.",
+          "id": 133
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Committee of the Whole House on the state of the Union rises leaving H.R. 2500 as unfinished business.",
+          "id": 132
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "On motion that the committee rise Agreed to by voice vote.",
+          "id": 131
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Mr. Smith (WA) moved that the committee rise.",
+          "id": 130
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Approved Further Amendments To Measure Previously Reported.",
+          "id": 129
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 17.",
+          "id": 128
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Jayapal amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 127
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Jayapal amendment No. 441.",
+          "id": 126
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Dingell amendment No. 440.",
+          "id": 125
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Malinowski amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mrs. Wagner demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 124
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Malinowski amendment No. 438.",
+          "id": 123
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Thompson (MS) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 122
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Thompson (MS) amendment No. 437.",
+          "id": 121
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Mr. Thornberry moved to recommit with instructions to the Committee on Armed Services. (text: CR H5760-5762)",
+          "id": 120
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Considered as unfinished business. (consideration: CR H5750-5764)",
+          "id": 119
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-12",
+          "description": "Considered as unfinished business. (CR H5733-5743)",
+          "id": 118
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "Committee of the Whole House on the state of the Union rises leaving H.R. 2500 as unfinished business.",
+          "id": 117
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "On motion that the Committee rise Agreed to by voice vote.",
+          "id": 116
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "Mr. Smith (WA) moved that the Committee rise.",
+          "id": 115
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ocasio-Cortez amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Rogers (AL) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 114
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Ocasio-Cortez amendment No. 430.",
+          "id": 113
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Ocasio-Cortez amendment No. 429.",
+          "id": 112
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Garcia (TX) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Rogers (AL) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 111
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Garcia (TX) amendment No. 428.",
+          "id": 110
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Lee (CA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. McCaul demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 109
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Lee (CA) amendment No. 425.",
+          "id": 108
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Lee (CA) amendment No. 424.",
+          "id": 107
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Khanna amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 106
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Khanna amendment No. 423.",
+          "id": 105
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Turner amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Turner demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 104
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Turner amendment No. 386.",
+          "id": 103
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Tipton amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Tipton demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 102
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Tipton amendment No. 375.",
+          "id": 101
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Khanna amendment No. 217.",
+          "id": 100
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 16.",
+          "id": 99
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 15.",
+          "id": 98
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 14.",
+          "id": 97
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 13.",
+          "id": 96
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 12.",
+          "id": 95
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 11.",
+          "id": 94
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 10.",
+          "id": 93
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 9.",
+          "id": 92
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Kendra S. Horn en bloc No. 8.",
+          "id": 91
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 7.",
+          "id": 90
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 6.",
+          "id": 89
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Amash amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 88
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Amash amendment No. 50.",
+          "id": 87
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Lee (CA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Lee (CA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 86
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Lee (CA) amendment No. 49.",
+          "id": 85
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Pappas amendment No. 48.",
+          "id": 84
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Huffman amendment No. 46.",
+          "id": 83
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Raskin amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Lamborn demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 82
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Raskin amendment No. 45.",
+          "id": 81
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ted Lieu (CA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Gibbs demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 80
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Ted Lieu (CA) amendment No. 44.",
+          "id": 79
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Takano amendment No. 39.",
+          "id": 78
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 5.",
+          "id": 77
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H.Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Langevin amendment No. 35.",
+          "id": 76
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Frankel amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Lamborn demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 75
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H.Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Frankel amendment No. 34.",
+          "id": 74
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Blumenauer amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Blumenauer demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 73
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Blumenauer amendment No. 33.",
+          "id": 72
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Blumenauer amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Turner demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 71
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Blumenauer amendment No. 32.",
+          "id": 70
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "UNFINISHED BUSINESS - The Chair announced that the unfinished business was on adoption of amendments, which had been debated earlier and on which further proceedings had been postponed.",
+          "id": 69
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Engel amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Cheney demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 68
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Engel amendment No. 31.",
+          "id": 67
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Engel amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Stefanik demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 66
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Engel amendment No. 29.",
+          "id": 65
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Cicilline amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 64
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Cicilline amendment No. 27.",
+          "id": 63
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Smith (WA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Zeldin demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 62
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Smith (WA) amendment No. 26.",
+          "id": 61
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ted Lieu amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Zeldin demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 60
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Ted Lieu amendment No. 24.",
+          "id": 59
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Ted Lieu amendment No. 23.",
+          "id": 58
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Sherman amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Wright demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 57
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Sherman amendment No. 21.",
+          "id": 56
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+          "id": 55
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "Considered as unfinished business.",
+          "id": 54
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-11",
+          "description": "Considered as unfinished business. (consideration: CR H5594-5724)",
+          "id": 53
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Committee of the Whole House on the state of the Union rises leaving H.R. 2500 as unfinished business.",
+          "id": 52
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "On motion that the Committee rise Agreed to by voice vote.",
+          "id": 51
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Mr. Smith (WA) moved that the Committee rise.",
+          "id": 50
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 4.",
+          "id": 49
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 3.",
+          "id": 48
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 2.",
+          "id": 47
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Smith (WA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Hice (GA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 46
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Smith (WA) amendment No. 19.",
+          "id": 45
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Omar amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Lamborn demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 44
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Omar amendment No. 17.",
+          "id": 43
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Shalala amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Foxx (NC) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 42
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Shalala amendment No. 14.",
+          "id": 41
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Considered under the provisions of rule H. Res. 476. (consideration: CR H5337-5576; text: CR H5351-5533)",
+          "id": 40
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Connolly amendment No. 12.",
+          "id": 39
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Connolly amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Hice (GA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 38
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Connolly amendment No. 11.",
+          "id": 37
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Torres (CA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Barr demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 36
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Torres (CA) amendment No. 10.",
+          "id": 35
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Brindisi amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Thornberry demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 34
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Brindisi amendment No. 9.",
+          "id": 33
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Speier amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Speier demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 32
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Speier amendment No. 6.",
+          "id": 31
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Speier amendment No. 3.",
+          "id": 30
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 20 minutes of debate on the Smith (WA) en bloc No. 1.",
+          "id": 29
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Smith (WA) amendment, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Ms. Stefanik demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+          "id": 28
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "DEBATE - Pursuant to the provisions of H. Res. 476, the Committee of the Whole proceeded with 10 minutes of debate on the Smith (WA) amendment No. 1.",
+          "id": 27
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 2500.",
+          "id": 26
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "The Speaker designated the Honorable Henry Cuellar to act as Chairman of the Committee.",
+          "id": 25
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 476 and Rule XVIII.",
+          "id": 24
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Rule provides for consideration of H.R. 2500 with 1 hour of general debate. Motion to recommit with or without instructions allowed. The resolution provides for a motion to suspend the rules relating to H.R. 1327 on the legislative days of July 11, 2019, or July 12, 2019.",
+          "id": 23
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Considered under the provisions of rule H. Res. 476.",
+          "id": 22
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-10",
+          "description": "Rule H. Res. 476 passed House.",
+          "id": 21
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-09",
+          "description": "Rules Committee Resolution H. Res. 476 Reported to House. Rule provides for consideration of H.R. 2500 with 1 hour of general debate. Motion to recommit with or without instructions allowed. The resolution provides for a motion to suspend the rules relating to H.R. 1327 on the legislative days of July 11, 2019, or July 12, 2019.",
+          "id": 20
+        },
+        {
+          "action_type": "Floor",
+          "chamber": "House",
+          "datetime": "2019-07-09",
+          "description": "Rules Committee Resolution H. Res. 476 Reported to House. Rule provides for consideration of H.R. 2500 with 1 hour of general debate. Motion to recommit with or without instructions allowed. The rule provides for motions to suspend the rules relating to H.R. 1327 on the legislative day of July 11, 2019, or July 12, 2019.",
+          "id": 19
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-27",
+          "description": "Supplemental report filed by the Committee on Armed Services, H. Rept. 116-120, Part II.",
+          "id": 18
+        },
+        {
+          "action_type": "Calendars",
+          "chamber": "House",
+          "datetime": "2019-06-19",
+          "description": "Placed on the Union Calendar, Calendar No. 88.",
+          "id": 17
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-19",
+          "description": "Reported (Amended) by the Committee on Armed Services. H. Rept. 116-120.",
+          "id": 16
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-13",
+          "description": "Ordered to be Reported (Amended) by the Yeas and Nays: 33 - 24.",
+          "id": 15
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-13",
+          "description": "Committee Consideration and Mark-up Session Held.",
+          "id": 14
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-12",
+          "description": "Ordered to be Reported (Amended) by the Yeas and Nays: 33 - 24.",
+          "id": 13
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-12",
+          "description": "Committee Consideration and Mark-up Session Held.",
+          "id": 12
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-04",
+          "description": "Forwarded by Subcommittee to Full Committee by the Yeas and Nays: 10 - 8 .",
+          "id": 11
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-04",
+          "description": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+          "id": 10
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-04",
+          "description": "Subcommittee Consideration and Mark-up Session Held.",
+          "id": 9
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-06-04",
+          "description": "Forwarded by Subcommittee to Full Committee (Amended) by Voice Vote .",
+          "id": 8
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Tactical Air and Land Forces.",
+          "id": 7
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Strategic Forces.",
+          "id": 6
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Seapower and Projection Forces.",
+          "id": 5
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Readiness.",
+          "id": 4
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Military Personnel.",
+          "id": 3
+        },
+        {
+          "action_type": "Committee",
+          "chamber": "House",
+          "datetime": "2019-05-03",
+          "description": "Referred to the Subcommittee on Intelligence and Emerging Threats and Capabilities.",
+          "id": 2
+        },
+        {
+          "action_type": "IntroReferral",
+          "chamber": "House",
+          "datetime": "2019-05-02",
+          "description": "Referred to the House Committee on Armed Services.",
+          "id": 1
+        }
+      ],
+      "active": true,
+      "bill": "H.R.2500",
+      "bill_id": "hr2500-116",
+      "bill_slug": "hr2500",
+      "bill_type": "hr",
+      "bill_uri": "https://api.propublica.org/congress/v1/116/bills/hr2500.json",
+      "cbo_estimate_url": "https://www.cbo.gov/publication/55374",
+      "committee_codes": [
+        "HSAS"
+      ],
+      "committees": "House Armed Services Committee",
+      "congress": "116",
+      "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-bill/2500",
+      "cosponsors": 1,
+      "cosponsors_by_party": {
+        "R": 1
+      },
+      "enacted": null,
+      "govtrack_url": "https://www.govtrack.us/congress/bills/116/hr2500",
+      "gpo_pdf_uri": null,
+      "house_passage": "2019-07-12",
+      "house_passage_vote": "2019-07-12",
+      "introduced_date": "2019-05-02",
+      "last_vote": "2019-07-12",
+      "latest_major_action": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 512.",
+      "latest_major_action_date": "2020-08-11",
+      "number": "H.R.2500",
+      "presidential_statements": [
+        {
+          "date": "2019-07-09",
+          "position": "No Opinion",
+          "url": "https://www.whitehouse.gov/wp-content/uploads/2019/07/SAP_HR-2500.pdf",
+          "veto_threat": "true",
+          "would_sign": "false"
+        }
+      ],
+      "primary_subject": "Armed Forces and National Security",
+      "senate_passage": null,
+      "senate_passage_vote": null,
+      "short_title": "National Defense Authorization Act for Fiscal Year 2020",
+      "sponsor": "Adam Smith",
+      "sponsor_id": "S000510",
+      "sponsor_party": "D",
+      "sponsor_state": "WA",
+      "sponsor_title": "Rep.",
+      "sponsor_uri": "https://api.propublica.org/congress/v1/members/S000510.json",
+      "subcommittee_codes": [
+        
+      ],
+      "summary": "National Defense Authorization Act for Fiscal Year 2020 This bill authorizes FY2020 appropriations and sets forth policies for Department of Defense (DOD) programs and activities, including military personnel strengths. It does not provide budget authority, which is provided in subsequent appropriations legislation. The bill authorizes appropriations to DOD for  Procurement, including aircraft, weapons and tracked combat vehicles, shipbuilding and conversion, missiles, and space procurement; Research, Development, Test, and Evaluation; Operation and Maintenance; Working Capital Funds; Chemical Agents and Munitions Destruction; Drug Interdiction and Counter-Drug Activities; the Defense Inspector General; the Defense Health Program; the Armed Forces Retirement Home; Overseas Contingency Operations; and Military Construction.  The bill authorizes the FY2020 personnel strengths for active duty and reserve forces and sets forth policies regarding   military personnel; acquisition policy and management; international programs; National Guard and Reserve Forces facilities; compensation and other personnel benefits; health care; DOD organization and management; civilian personnel matters;  matters relating to foreign nations; and strategic programs, cyber, and intelligence matters.  The bill authorizes appropriations for base realignment and closure activities, and maritime matters. The bill also authorizes appropriations and sets forth policies for Department of Energy national security programs, including the National Nuclear Security Administration and the Defense Nuclear Facilities Safety Board. The bill sets forth policies for  North Korea nuclear sanctions, paid family leave for federal personnel, limiting the use of criminal history in federal hiring and contracting, defense equipment sales to foreign countries or international organizations, matters relating to Burma, Saudi Arabia human rights and accountability, measures to combat illicit trafficking that finances Al-Shabaab, sanctions with respect to foreign traffickers of illicit synthetic opioids, and a Cable Security Fleet to meet national security requirements. ",
+      "summary_short": "National Defense Authorization Act for Fiscal Year 2020 This bill authorizes FY2020 appropriations and sets forth policies for Department of Defense (DOD) programs and activities, including military personnel strengths. It does not provide budget authority, which is provided in subsequent appropriations legislation. The bill authorizes appropriations to DOD for  Procurement, including aircraft, weapons and tracked combat vehicles, shipbuilding and conversion, missiles, and space procurement; ...",
+      "title": "To authorize appropriations for fiscal year 2020 for military activities of the Department of Defense and for military construction, to prescribe military personnel strengths for such fiscal year, and for other purposes.",
+      "versions": [
+        {
+          "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-bill/2500/text/eh",
+          "status": "Engrossed in House",
+          "title": "EH",
+          "url": "https://www.govinfo.gov/content/pkg/BILLS-116hr2500eh/xml/BILLS-116hr2500eh.xml"
+        },
+        {
+          "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-bill/2500/text/rh",
+          "status": "Reported in House",
+          "title": "RH",
+          "url": "https://www.govinfo.gov/content/pkg/BILLS-116hr2500rh/xml/BILLS-116hr2500rh.xml"
+        },
+        {
+          "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-bill/2500/text/ih",
+          "status": "Introduced in House",
+          "title": "IH",
+          "url": "https://www.govinfo.gov/content/pkg/BILLS-116hr2500ih/xml/BILLS-116hr2500ih.xml"
+        }
+      ],
+      "vetoed": null,
+      "votes": [
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/473.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Passage",
+          "result": "Passed",
+          "roll_call": "473",
+          "time": "13:27:00",
+          "total_no": 197,
+          "total_not_voting": 16,
+          "total_yes": 220
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/472.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Motion to Recommit with Instructions",
+          "result": "Failed",
+          "roll_call": "472",
+          "time": "13:21:00",
+          "total_no": 212,
+          "total_not_voting": 17,
+          "total_yes": 204
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/471.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "471",
+          "time": "13:01:00",
+          "total_no": 189,
+          "total_not_voting": 20,
+          "total_yes": 230
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/470.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "470",
+          "time": "12:53:00",
+          "total_no": 182,
+          "total_not_voting": 21,
+          "total_yes": 236
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/469.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "469",
+          "time": "12:49:00",
+          "total_no": 204,
+          "total_not_voting": 22,
+          "total_yes": 213
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/468.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "468",
+          "time": "12:46:00",
+          "total_no": 245,
+          "total_not_voting": 21,
+          "total_yes": 173
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/467.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "467",
+          "time": "12:42:00",
+          "total_no": 241,
+          "total_not_voting": 18,
+          "total_yes": 179
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/466.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "466",
+          "time": "12:37:00",
+          "total_no": 223,
+          "total_not_voting": 18,
+          "total_yes": 198
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/465.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "465",
+          "time": "12:32:00",
+          "total_no": 183,
+          "total_not_voting": 19,
+          "total_yes": 237
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/464.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "464",
+          "time": "12:28:00",
+          "total_no": 180,
+          "total_not_voting": 17,
+          "total_yes": 242
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/463.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "463",
+          "time": "12:24:00",
+          "total_no": 170,
+          "total_not_voting": 18,
+          "total_yes": 251
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/462.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "462",
+          "time": "12:20:00",
+          "total_no": 221,
+          "total_not_voting": 17,
+          "total_yes": 201
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/461.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "461",
+          "time": "12:15:00",
+          "total_no": 6,
+          "total_not_voting": 16,
+          "total_yes": 417
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/460.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "460",
+          "time": "12:10:00",
+          "total_no": 236,
+          "total_not_voting": 16,
+          "total_yes": 187
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/459.json",
+          "chamber": "House",
+          "date": "2019-07-12",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "459",
+          "time": "12:06:00",
+          "total_no": 307,
+          "total_not_voting": 17,
+          "total_yes": 115
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/458.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "458",
+          "time": "18:00:00",
+          "total_no": 207,
+          "total_not_voting": 11,
+          "total_yes": 221
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/457.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "457",
+          "time": "17:56:00",
+          "total_no": 205,
+          "total_not_voting": 10,
+          "total_yes": 223
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/456.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "456",
+          "time": "17:52:00",
+          "total_no": 214,
+          "total_not_voting": 10,
+          "total_yes": 215
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/455.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "455",
+          "time": "17:46:00",
+          "total_no": 229,
+          "total_not_voting": 12,
+          "total_yes": 198
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/454.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Failed",
+          "roll_call": "454",
+          "time": "17:40:00",
+          "total_no": 264,
+          "total_not_voting": 11,
+          "total_yes": 164
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/453.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "453",
+          "time": "15:09:00",
+          "total_no": 189,
+          "total_not_voting": 14,
+          "total_yes": 236
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/452.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "452",
+          "time": "15:04:00",
+          "total_no": 183,
+          "total_not_voting": 15,
+          "total_yes": 241
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/451.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "451",
+          "time": "15:00:00",
+          "total_no": 173,
+          "total_not_voting": 14,
+          "total_yes": 252
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/450.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "450",
+          "time": "14:53:00",
+          "total_no": 185,
+          "total_not_voting": 14,
+          "total_yes": 240
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/449.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "449",
+          "time": "14:49:00",
+          "total_no": 180,
+          "total_not_voting": 13,
+          "total_yes": 246
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/448.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "448",
+          "time": "14:45:00",
+          "total_no": 187,
+          "total_not_voting": 13,
+          "total_yes": 239
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/447.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "447",
+          "time": "14:40:00",
+          "total_no": 195,
+          "total_not_voting": 10,
+          "total_yes": 234
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/446.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "446",
+          "time": "14:36:00",
+          "total_no": 186,
+          "total_not_voting": 9,
+          "total_yes": 243
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/445.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "445",
+          "time": "14:31:00",
+          "total_no": 210,
+          "total_not_voting": 10,
+          "total_yes": 219
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/444.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "444",
+          "time": "14:27:00",
+          "total_no": 178,
+          "total_not_voting": 10,
+          "total_yes": 251
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/443.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "443",
+          "time": "14:23:00",
+          "total_no": 182,
+          "total_not_voting": 10,
+          "total_yes": 247
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/442.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "442",
+          "time": "14:18:00",
+          "total_no": 205,
+          "total_not_voting": 9,
+          "total_yes": 225
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/441.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "441",
+          "time": "14:14:00",
+          "total_no": 187,
+          "total_not_voting": 9,
+          "total_yes": 243
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/440.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "440",
+          "time": "14:09:00",
+          "total_no": 199,
+          "total_not_voting": 9,
+          "total_yes": 231
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/439.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "439",
+          "time": "14:04:00",
+          "total_no": 187,
+          "total_not_voting": 10,
+          "total_yes": 242
+        },
+        {
+          "api_url": "https://api.propublica.org/congress/v1/116/house/sessions/1/votes/438.json",
+          "chamber": "House",
+          "date": "2019-07-11",
+          "question": "On Agreeing to the Amendment",
+          "result": "Agreed to",
+          "roll_call": "438",
+          "time": "13:58:00",
+          "total_no": 193,
+          "total_not_voting": 10,
+          "total_yes": 236
+        }
+      ],
+      "withdrawn_cosponsors": 0
+    }
+  ],
+  "status": "OK"
+} -->
