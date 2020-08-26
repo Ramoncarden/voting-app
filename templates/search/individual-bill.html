@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card">
-  <h5 class="card-header">Featured</h5>
+<a href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+<div class="card mt-3">
+  <h5 class="card-header">{{bill_data['bill']}}</h5>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <li>{{bill_data['active']}}</li>
-    <a href="/search/bill">back</a>
+    <h5 class="card-title">{{bill_data['short_title']}}</h5>
+    <p class="card-text">{{bill_data['summary']}}</p>
+    <div><strong class="mr-2">Bill Active: </strong>{{bill_data['active']}}</div>
+    <div><strong class="mr-2">Bill Sponsor: </strong><a href="/search/member/{{bill_data['sponsor_id']}}">{{bill_data['sponsor_id']}} - {{bill_data['sponsor']}}</a></div>
+    <div><strong class="mr-2">Bill Sponsor Party: </strong>{{bill_data['sponsor_party']}}</div>
+    <div><strong class="mr-2">Bill Sponsor State: </strong>{{bill_data['sponsor_state']}}</div>
+    <div><strong class="mr-2">Bill introduecd date: </strong>{{bill_data['introduced_date']}}</div>
+    <div><strong class="mr-2">Bill latest major action: </strong>{{bill_data['latest_major_action']}}</div>
+    <div><strong class="mr-2">Bill latest major action date: </strong>{{bill_data['latest_major_action_date']}}</div>
+    <div><strong class="mr-2">CongressGov url: </strong><a href="{{bill_data['congressdotgov_url']}}">{{bill_data['congressdotgov_url']}}</a></div>
+    <div><strong class="mr-2">Govtrack url: </strong><a href="{{bill_data['govtrack_url']}}">{{bill_data['govtrack_url']}}</a></div>
+    <div><strong class="mr-2">Bill last actions: </strong>
+      <ul>
+        <li>date - {{bill_data['actions'][0]['datetime']}}</li>
+        <li>action type - {{bill_data['actions'][0]['action_type']}}</li>
+        <li>chamber - {{bill_data['actions'][0]['chamber']}}</li>
+        <li>description - {{bill_data['actions'][0]['description']}}</li>
+      </ul>
+    </div>
+    
   </div>
 </div>
 {% endblock %}

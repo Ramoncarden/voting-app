@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Voting records for {{member_id}}</h1>
+<h1 class=>Voting records for {{member_id}}</h1>
 {% for record in members_data %}
-  <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <!-- <div class="card bg-light mb-3" style="max-width: 18rem;">
     <div class="card-header">Bill id: {{record['bill']['bill_id']}}</div>
     <div class="card-body">
       <h5 class="card-title">Bill title: {{record['bill']['title']}}</h5>
@@ -12,14 +12,23 @@
       <p class="card-text">Vote result: {{record['result']}}</p>
       <p class="card-text">Voting position: <strong>{{record['position']}}</strong></p>
     </div>
+  </div> -->
+
+  <div class="row justify-content-center mt-3">
+    <div class="card bg-white w-75 my-4">
+      <div class="card-header font-weight-bold">
+        <a href="/search/bill/{{record['bill']['bill_id']}}">{{record['bill']['bill_id']}}</a>
+      </div>
+      <div class="card-body bg-info">
+        <h5 class="card-title">Bill info - <span class="text-primary">{{record['bill']['title']}}</span></h5>
+        <p class="card-text"><strong>Vote description: </strong>{{record['description']}}</p>
+        <p class="card-text"><strong>Date of vote: </strong>{{record['date']}}</p>
+        <p class="card-text"><strong>Vote result: </strong>{{record['result']}}</p>
+        <p class="card-text"><strong>Latest action: </strong>{{record['bill']['latest_action']}}</p>
+        <p class="card-text"><strong>Voting position: </strong><strong><u>{{record['position']}}</u></strong></p>
+      </div>
+    </div>
   </div>
-    <!-- <p>*************************</p>
-    <li>Bill id: {{record['bill']['bill_id']}}</li>
-    <li>Bill title: {{record['bill']['title']}}</li>
-    <li>Vote description: {{record['description']}}</li>
-    <li>Vote result: {{record['result']}}</li>
-    <li>Date of vote: {{record['date']}}</li>
-    <li>Voting position: {{record['position']}}</li>
-    <p>************************</p> -->
+
 {% endfor %}
 {% endblock %}

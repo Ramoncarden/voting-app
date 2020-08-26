@@ -199,6 +199,10 @@ def get_member_info(member_id):
     data = res.json()
     members_data = data['results'][0]['votes']
 
+    # split bill and congress session info to be used to navigate to individual bill
+    # id_no = member_id.split('-')[0]
+    # congress_no = member_id.split('-')[1]
+
     return render_template('search/officials_voting.html', members_data=members_data, member_id=member_id)
 
 
@@ -207,8 +211,8 @@ def get_bill_info():
     """Retrieve all bill information"""
 
     search_term = request.args['search-form-input']
-    # parsed_search_term = quote(search_term)
-    res = requests.get(f"{BILL_API}?query={search_term}", headers={
+    parsed_search_term = quote(search_term)
+    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"", headers={
                        'X-API-key': key})
     data = res.json()
     # return data

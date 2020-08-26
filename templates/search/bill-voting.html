@@ -10,36 +10,20 @@
       <div class="card-body bg-secondary">
         <h5 class="card-title">{{bill['short_title']}}</h5>
         <p class="card-text">{{bill['summary']}}</p>
-        <li>{{bill['active']}}</li>
-        <li>{{bill['committees']}}</li>
-        <li>{{bill['congressdotgov_url']}}</li>
-        <li>{{bill['govtrack_url']}}</li>
-        <li>{{bill['primary_subject']}}</li>
-        <li>{{bill['introduced_date']}}</li>
-        <li>{{bill['last_vote']}}</li>
-        <li>{{bill['latest_major_action']}}</li>
-        <li>{{bill['last_vote']}}</li>
-        <li>{{bill['title']}}</li>
-        <li>{{bill['senate_passage']}}</li>
+        <div><strong class="mr-2">Bill active:  </strong>{{bill['active']}}</div>
+        <div><strong class="mr-2">Committee: </strong>{{bill['committees']}}</div>
+        <div><strong class="mr-2">CongressGov url: </strong><a href="{{bill['congressdotgov_url']}}">{{bill['congressdotgov_url']}}</a></div>
+        <div><strong class="mr-2">Govtrack url: </strong><a href="{{bill['govtrack_url']}}">{{bill['govtrack_url']}}</a></div>
+        <div><strong class="mr-2">Bill subject: </strong>{{bill['primary_subject']}}</div>
+        <div><strong class="mr-2">Bill introduced: </strong>{{bill['introduced_date']}}</div>
+        <div><strong class="mr-2">Bill last vote: </strong>{{bill['last_vote']}}</div>
+        <div><strong class="mr-2">Bill last major action: </strong>{{bill['latest_major_action']}}</div>
+        <div><strong class="mr-2">Last Vote: </strong>{{bill['last_vote']}}</div>
+        <div><strong class="mr-2">Title: </strong>{{bill['title']}}</div>
+        <div><strong class="mr-2">Bill Passage: </strong>{{bill['senate_passage']}}</div>
       </div>
     </div>
   </div>
-
-
-  <!-- <h1>{{bill['bill_id']}}</h1>
-  <h2></h2>
-  <li>{{bill['active']}}</li>
-  <li>{{bill['committees']}}</li>
-  <li>{{bill['congressdotgov_url']}}</li>
-  <li>{{bill['govtrack_url']}}</li>
-  <li>{{bill['primary_subject']}}</li>
-  <li>{{bill['introduced_date']}}</li>
-  <li>{{bill['last_vote']}}</li>
-  <li>{{bill['latest_major_action']}}</li>
-  <li>{{bill['last_vote']}}</li>
-  <li>{{bill['title']}}</li>
-  <p>{{bill['summary']}}</p>
-  <li>{{bill['senate_passage']}}</li> -->
 
 {% endfor %}
 {% endblock %}
