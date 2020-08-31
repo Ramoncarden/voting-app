@@ -190,6 +190,26 @@ def get_gov_official():
     return render_template('search/gov-officials.html', id=id, first_name=first_name, last_name=last_name, members=members)
 
 
+@app.route('/search/congress')
+def get_congress_member():
+    """Gather list of congress members"""
+
+    res = requests.get(f"{BASE_URL}116/house/members.json",
+                       headers={'X-API-Key': key})
+
+    data = res.json()
+
+    id = [member['id'] for member in data['results'][0]['members']]
+    first_name = [member['first_name']
+                  for member in data['results'][0]['members']]
+    last_name = [member['last_name']
+                 for member in data['results'][0]['members']]
+
+    members = data['results'][0]['members']
+
+    return render_template('search/congress.html', id=id, first_name=first_name, last_name=last_name, members=members)
+
+
 @app.route('/search/member/<member_id>')
 def get_member_info(member_id):
     """Retrieve government official individual data on link click"""
