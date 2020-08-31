@@ -1,34 +1,86 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class=>Voting records for {{member_id}}</h1>
-{% for record in members_data %}
-  <!-- <div class="card bg-light mb-3" style="max-width: 18rem;">
-    <div class="card-header">Bill id: {{record['bill']['bill_id']}}</div>
-    <div class="card-body">
-      <h5 class="card-title">Bill title: {{record['bill']['title']}}</h5>
-      <p class="card-text">Vote description: {{record['description']}}</p>
-      <p class="card-text">Date of vote: {{record['date']}}</p>
-      <p class="card-text">Vote result: {{record['result']}}</p>
-      <p class="card-text">Voting position: <strong>{{record['position']}}</strong></p>
-    </div>
-  </div> -->
-
-  <div class="row justify-content-center mt-3">
-    <div class="card bg-white w-75 my-4">
-      <div class="card-header font-weight-bold">
-        <a href="/search/bill/{{record['bill']['bill_id']}}">{{record['bill']['bill_id']}}</a>
+<div class="container">
+  <h1 id="member-display-name" class="display-3 text-center">{{member_contact_data['first_name']}} {{member_contact_data['last_name']}}</h1>
+  <div class="row justify-content-center">
+    <!-- <div class="card w-50 border-primary">
+      <img class="card-img-top img-fluid gov-member-pic" src="https://theunitedstates.io/images/congress/450x550/{{member_id}}.jpg" alt="{{member_id}}">
+      <div class="card-body">
+        <h5 class="card-title">{{member_contact_data['first_name']}} {{member_contact_data['last_name']}}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
-      <div class="card-body bg-info">
-        <h5 class="card-title">Bill info - <span class="text-primary">{{record['bill']['title']}}</span></h5>
-        <p class="card-text"><strong>Vote description: </strong>{{record['description']}}</p>
-        <p class="card-text"><strong>Date of vote: </strong>{{record['date']}}</p>
-        <p class="card-text"><strong>Vote result: </strong>{{record['result']}}</p>
-        <p class="card-text"><strong>Latest action: </strong>{{record['bill']['latest_action']}}</p>
-        <p class="card-text"><strong>Voting position: </strong><strong><u>{{record['position']}}</u></strong></p>
+    </div> -->
+    
+    <div class="col-sm-6 col-md-4 col-lg-6 mt-4 mb-4">
+      <div class="card">
+        <img class="card-img-top img-fluid gov-member-pic" src="https://theunitedstates.io/images/congress/original/{{member_id}}.jpg" alt="{{member_id}}">
+          <div class="card-block">
+              <h3 class="card-title text-center text-primary mt-3">{{member_contact_data['first_name']}} {{member_contact_data['last_name']}} ({{member_id}})</h3>
+              <div class="card-text text-center">
+                <strong>DOB:</strong> {{member_contact_data['date_of_birth']}}
+              </div>
+              <div class="card-text text-center">
+                <strong>State/Party:</strong>  {{member_contact_data['roles'][0]['state']}} - ({{member_contact_data['current_party']}})
+              </div>
+              <div class="card-text text-center">
+                <strong>In Office:</strong> {{member_contact_data['in_office']}}
+              </div>
+              <div class="card-text text-center"> 
+                <strong>Address:</strong> {{member_contact_data['roles'][0]['office']}}
+              </div>
+              <div class="card-text text-center"> 
+                <strong>Phone:</strong> {{member_contact_data['roles'][0]['phone']}}
+              </div>
+              <div class="card-text text-center"> 
+                <strong>Fax:</strong> {{member_contact_data['roles'][0]['fax']}}
+              </div>
+              <div class="card-text text-center"> 
+                <strong>Missed votes percentage:</strong> {{member_contact_data['roles'][0]['missed_votes_pct']}}%
+              </div>  
+              <div class="card-text text-center mb-3"> 
+                <strong>Next election:</strong> {{member_contact_data['roles'][0]['next_election']}}
+              </div>
+          <div class="card-footer p-2">
+            <span id="contact-link" class="ml-1"><a href="{{member_contact_data['roles'][0]['contact_form']}}" target="_blank">Contact<i class="fas fa-envelope ml-1"></i></a></span>
+              <span class="m-1 pb-1"><a href="https://facebook.com/{{member_contact_data['facebook_account']}}" target="_blank"><img class="social-icon" src="/static/images/f-Logos-2019-1/f_logo_online_04_2019-1/color/PNG/f_logo_RGB-Blue_58.png" alt="Link to Facebook"></a></span>
+              <span class="m-1 pb-1"><a href="https://twitter.com/{{member_contact_data['twitter_account']}}" target="_blank"><img class="social-icon" src="/static/images/Twitter Social Icons/Twitter Social Icons/Twitter_SocialIcon_RoundedSquare/Twitter_Social_Icon_Rounded_Square_Color.png" alt="Link to twitter"></a></span>
+              <span class="m-1"><a href="https://youtube.com/{{member_contact_data['youtube_account']}}" target="_blank"><img class="youtube-icon" src="/static/images/youtube_full_color_icon/social/64px/red/youtube_social_icon_red.png" alt="Link to Youtube"></a></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <hr class="my-5">
+  <h2 id="voting-records" class="display-4 text-center my-5 py-3">Voting records</h2>
+  {% for record in members_data %}
+    <!-- <div class="card bg-light mb-3" style="max-width: 18rem;">
+      <div class="card-header">Bill id: {{record['bill']['bill_id']}}</div>
+      <div class="card-body">
+        <h5 class="card-title">Bill title: {{record['bill']['title']}}</h5>
+        <p class="card-text">Vote description: {{record['description']}}</p>
+        <p class="card-text">Date of vote: {{record['date']}}</p>
+        <p class="card-text">Vote result: {{record['result']}}</p>
+        <p class="card-text">Voting position: <strong>{{record['position']}}</strong></p>
+      </div>
+    </div> -->
+
+    <div class="row justify-content-center mt-3">
+      <div class="card bg-white w-75 my-4">
+        <div class="card-header font-weight-bold">
+          <a href="/search/bill/{{record['bill']['bill_id']}}">{{record['bill']['bill_id']}}</a>
+        </div>
+        <div class="card-body bg-info">
+          <h5 class="card-title">Bill info - <span class="text-primary">{{record['bill']['title']}}</span></h5>
+          <p class="card-text"><strong>Vote description: </strong>{{record['description']}}</p>
+          <p class="card-text"><strong>Date of vote: </strong>{{record['date']}}</p>
+          <p class="card-text"><strong>Vote result: </strong>{{record['result']}}</p>
+          <p class="card-text"><strong>Latest action: </strong>{{record['bill']['latest_action']}}</p>
+          <p class="card-text"><strong>Voting position: </strong><strong><u>{{record['position']}}</u></strong></p>
+        </div>
+      </div>
+    </div>
 
 {% endfor %}
 {% endblock %}

@@ -16,6 +16,7 @@ MEMBERS_API_URL = 'https://api.propublica.org/congress/v1/116/senate/members.jso
 ALL_MEMBERS = 'https://api.propublica.org/congress/v1/116/senate/members.json'
 MEMBER_VOTE_POSITION_API = 'https://api.propublica.org/congress/v1/members/'
 BILL_API = 'https://api.propublica.org/congress/v1/bills/search.json'
+
 # SPECIFIC_BILL_API = 'https://api.propublica.org/congress/v1/{congress}/bills'
 
 CURR_USER_KEY = 'curr_user'
@@ -160,13 +161,13 @@ def page_not_found(e):
 def do_search():
     """Handle search data and send request to API"""
 
-    response = requests.get(f"{BASE_URL}/members/B001243.json",
+    response = requests.get(f"{BASE_URL}/members/B001267.json",
                             headers={'X-API-Key': key})
     data = response.json()
     first_name = data['results'][0]['first_name']
     last_name = data['results'][0]['last_name']
 
-    return f"{first_name} {last_name}"
+    return data
 
 
 @app.route('/search')
@@ -196,14 +197,21 @@ def get_member_info(member_id):
     res = requests.get(
         f"{MEMBER_VOTE_POSITION_API}{member_id}/votes.json", headers={'X-API-Key': key})
 
+    response = requests.get(f"{BASE_URL}/members/{member_id}.json",
+                            headers={'X-API-Key': key})
+
+    response_data = response.json()
+    member_contact_data = response_data['results'][0]
+
     data = res.json()
+    # return data
     members_data = data['results'][0]['votes']
 
     # split bill and congress session info to be used to navigate to individual bill
     # id_no = member_id.split('-')[0]
     # congress_no = member_id.split('-')[1]
 
-    return render_template('search/officials_voting.html', members_data=members_data, member_id=member_id)
+    return render_template('search/officials_voting.html', members_data=members_data, member_id=member_id, member_contact_data=member_contact_data)
 
 
 @app.route('/search/bill')
@@ -212,7 +220,7 @@ def get_bill_info():
 
     search_term = request.args['search-form-input']
     parsed_search_term = quote(search_term)
-    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"", headers={
+    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"&offset=200", headers={
                        'X-API-key': key})
     data = res.json()
     # return data
@@ -230,10 +238,22 @@ def get_bill_by_id(bill_id):
     id_no = bill_id.split('-')[0]
     congress_no = bill_id.split('-')[1]
 
-    res = requests.get(
-        f"{BASE_URL}{congress_no}/bills/{id_no}.json", headers={'X-API-Key': key})
+    if bill_id[0] == "p":
+        id_no = bill_id.split('-')[0].upper()
 
-    data = res.json()
-    bill_data = data['results'][0]
+        res = requests.get(
+            f"{BASE_URL}{congress_no}/nominees/{id_no}.json", headers={'X-API-Key': key})
 
-    return render_template('search/individual-bill.html', bill_data=bill_data)
+        data = res.json()
+        nomination_data = data['results'][0]
+
+        return render_template("search/nomination.html", nomination_data=nomination_data)
+
+    else:
+        res = requests.get(
+            f"{BASE_URL}{congress_no}/bills/{id_no}.json", headers={'X-API-Key': key})
+
+        data = res.json()
+        bill_data = data['results'][0]
+
+        return render_template('search/individual-bill.html', bill_data=bill_data)

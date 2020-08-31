@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+<div class="card mt-3">
+  <h5 class="card-header">{{nomination_data['id']}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{nomination_data['description']}}</h5>
+    <p class="card-text">{{nomination_data['status']}}</p>
+    <div><strong class="mr-2">Last major action date: </strong>{{nomination_data['latest_major_action']}}</div>
+    <div><strong class="mr-2">Nominee state: </strong>{{nomination_data['nominee_state']}}</div>
+    <div>Votes:
+
+      <ul>
+        <div><i>{{nomination_data['votes'][0]['question']}}</i></div>
+        <div>Date: {{nomination_data['votes'][0]['date']}}</div>
+        <div>Result: {{nomination_data['votes'][0]['result']}}</div>
+        <li class="text-primary"><strong>YES:</strong> {{nomination_data['votes'][0]['total_yes']}}</li>
+        <li class="text-danger"><strong>NO:</strong> {{nomination_data['votes'][0]['total_no']}}</li>
+        <li><strong>Not Voting:</strong> {{nomination_data['votes'][0]['total_not_voting']}}</li>
+      </ul>
+      <hr>
+      <ul>
+        <div><i>{{nomination_data['votes'][1]['question']}}</i></div>
+        <div>Date: {{nomination_data['votes'][1]['date']}}</div>
+        <div>Result: {{nomination_data['votes'][1]['result']}}</div>
+        <li class="text-primary"><strong>YES:</strong> {{nomination_data['votes'][1]['total_yes']}}</li>
+        <li class="text-danger"><strong>NO:</strong> {{nomination_data['votes'][1]['total_no']}}</li>
+        <li><strong>Not Voting:</strong> {{nomination_data['votes'][1]['total_not_voting']}}</li>
+      </ul>
+    </div>
+    <div>
+      <div class="mb-2">Bill Actions:</div>
+      {% for action in nomination_data['actions'] %}
+        <ul>
+          <li>{{action['date']}}</li>
+          <li><i>{{action['description']}}</i></li>
+        </ul>
+      {% endfor %}
+    </div>
+    
+  </div>
+</div>
+{% endblock %}
+
+<!-- {
+  "copyright": "Copyright (c) 2020 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "actions": [
+        {
+          "date": "2020-08-06",
+          "description": "Confirmed by the Senate by Yea-Nay Vote. 55 - 42."
+        },
+        {
+          "date": "2020-08-06",
+          "description": "Cloture invoked in Senate by Yea-Nay Vote. 55 - 42."
+        },
+        {
+          "date": "2020-08-06",
+          "description": "Considered by Senate."
+        },
+        {
+          "date": "2020-08-05",
+          "description": "By unanimous consent agreement, debate 8/6/2020."
+        },
+        {
+          "date": "2020-08-04",
+          "description": "Cloture motion presented in Senate."
+        },
+        {
+          "date": "2020-08-04",
+          "description": "Motion to proceed to executive session to consideration of nomination agreed to in Senate by Voice Vote."
+        },
+        {
+          "date": "2020-08-04",
+          "description": "By unanimous consent agreement, mandatory quorum required under Rule XXII waived."
+        },
+        {
+          "date": "2020-05-14",
+          "description": "Placed on Senate Executive Calendar. Calendar No. 645."
+        },
+        {
+          "date": "2020-05-14",
+          "description": "Reported by Senator Graham, Committee on the Judiciary, without printed report."
+        },
+        {
+          "date": "2020-05-14",
+          "description": "Committee on the Judiciary. Ordered to be reported favorably."
+        },
+        {
+          "date": "2020-03-04",
+          "description": "Committee on the Judiciary. Hearings held."
+        },
+        {
+          "date": "2020-02-27",
+          "description": "Received in the Senate and referred to the Committee on the Judiciary."
+        }
+      ],
+      "committee_uri": "https://api.propublica.org/represent/v1/116/senate/committees/SSJU.json",
+      "congress": 116,
+      "date_received": "2020-02-27",
+      "description": "John Peter Cronan, of New York, to be United States District Judge for the Southern District of New York, vice William H. Pauley III, retired.",
+      "id": "PN1599",
+      "latest_action_date": "2020-08-06",
+      "nominee_state": "NY",
+      "status": "Confirmed",
+      "votes": [
+        {
+          "date": "2020-08-06",
+          "question": "On the Nomination",
+          "result": "Nomination Confirmed",
+          "roll_call": 157,
+          "total_no": 42,
+          "total_not_voting": 3,
+          "total_yes": 55,
+          "uri": "https://api.propublica.org/congress/v1/116/senate/sessions/2/votes/157.json"
+        },
+        {
+          "date": "2020-08-06",
+          "question": "On the Cloture Motion",
+          "result": "Cloture Motion Agreed to",
+          "roll_call": 156,
+          "total_no": 42,
+          "total_not_voting": 3,
+          "total_yes": 55,
+          "uri": "https://api.propublica.org/congress/v1/116/senate/sessions/2/votes/156.json"
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+} -->
