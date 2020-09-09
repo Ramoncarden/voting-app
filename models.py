@@ -19,6 +19,11 @@ class User(db.Model):
     username = db.Column(db.Text, nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
 
+    likes = db.relationship(
+        'GovMembers',
+        secondary="likes"
+    )
+
     @classmethod
     def signup(cls, username, email, password):
         """Sign up user.
@@ -56,6 +61,28 @@ class User(db.Model):
                 return user
 
         return False
+
+
+class Likes(db.Model):
+    """Mapping user likes to goverment members"""
+
+    __tablename__ = 'likes'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id', ondelete='cascade'))
+    item_id = db.Column(db.String, db.ForeignKey(
+        'govmembers.id', ondelete='cascade'))
+
+
+class GovMembers(db.Model):
+    """Add liked gov Members"""
+
+    __tablename__ = 'govmembers'
+
+    id = db.Column(db.String, primary_key=True)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
 
 
 def connect_db(app):

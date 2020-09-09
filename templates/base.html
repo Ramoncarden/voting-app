@@ -43,12 +43,8 @@
             <li class="nav-item active nav-left"><a class="nav-link" href="/signup">Sign up</a></li>
             <li class="nav-item active nav-left"><a class="nav-link" href="/login">Log in</a></li>
             {% else %}
-            <li>
-              <a href="/users/{{ g.user.id }}">
-                <img src="{{ g.user.username }}">
-              </a>
-            </li>
-            <li><a href="/logout">Log out</a></li>
+            
+            <li class="nav-item active nav-left"><a class="nav-link" href="/logout">Log out</a></li>
             {% endif %}
           </ul>
         </div>
@@ -70,4 +66,5 @@
       </div>
     </div>      
 </body>
+<script src="/static/index.js"></script>
 </html>

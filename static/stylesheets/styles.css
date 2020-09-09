@@ -23,8 +23,12 @@ table td {
   overflow: hidden;
 }
 
-th {
-  width: 33.33%;
+.no-user {
+  width: 29.33%;
+}
+
+.logged-in {
+  width: 12%;
 }
 
 #logo-thumbnail {

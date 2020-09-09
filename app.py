@@ -9,7 +9,7 @@ from flask_paginate import Pagination, get_page_parameter
 from urllib.parse import quote
 
 from forms import UserAddForm, LoginForm
-from models import db, connect_db, User
+from models import db, connect_db, User, GovMembers, Likes
 
 BASE_URL = 'https://api.propublica.org/congress/v1/'
 MEMBERS_API_URL = 'https://api.propublica.org/congress/v1/116/senate/members.json'
@@ -119,6 +119,83 @@ def login():
     return render_template('users/login.html', form=form)
 
 
+@app.route('/users/like', methods=['GET', 'POST'])
+def add_like():
+    """Toggle a liked item for currently logged in user"""
+
+    if not g.user:
+        flash('Access unauthorized', 'danger')
+        return redirect('/')
+
+    member_id = request.args.get('member_id')
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+
+    new_govmember_like = GovMembers(id=member_id,
+                                    first_name=first_name,
+                                    last_name=last_name)
+
+    new_like = Likes(user_id=g.user.id, item_id=member_id)
+
+    db.session.add(new_like)
+    db.session.add(new_govmember_like)
+    db.session.commit()
+
+    # liked_msg_ids = [msg.id for msg in g.user.likes]
+
+    return redirect('/')
+
+
+@app.route('/users/like/<like_id>/delete', methods=['GET', 'POST'])
+def remove_like(like_id):
+    """Remove govmember from favorites"""
+
+    if not g.user:
+        flash("Access unauthorized", "danger")
+        return redirect('/')
+
+    liked_member = GovMembers.query.get_or_404(like_id)
+
+    user_likes = g.user.likes
+
+    if liked_member in user_likes:
+        g.user.likes = [
+            like for like in user_likes if like != liked_member
+        ]
+    else:
+        g.user.likes.append(liked_member)
+
+    db.session.commit()
+    return redirect('/')
+
+    # user_likes = g.user_likes
+
+    # if liked_item in user_likes:
+    #     g.user.likes = [
+    #         like for like in user_likes if like != liked_item]
+    # else:
+    #     g.user.likes.append(liked_item)
+
+    # db.session.commit()
+    # return redirect('/')
+
+
+@app.route('/users/delete', methods=['POST'])
+def delete_user():
+    """Delete user"""
+
+    if not g.user:
+        flash("Access unauthorized", "danger")
+        return redirect('/')
+
+    do_logout()
+
+    db.session.delete(g.user)
+    db.session.commit()
+
+    return redirect('/signup')
+
+
 @app.route('/logout')
 def logout():
     """Handle user logout"""
@@ -145,8 +222,24 @@ def show_homepage():
     - logged in: show last 10 history searches and favorites
     """
     if g.user:
-        username = g.user.email
-        return render_template('home.html', username=username)
+        username = g.user.username
+
+        govmembers = GovMembers.query.all()
+
+        liked_member_ids = [govmember.id for govmember in g.user.likes]
+
+        liked_member_name = [
+            member.first_name for member in govmembers if member in g.user.likes]
+
+        liked_member_last_name = [
+            member.last_name for member in govmembers if member in g.user.likes]
+
+        print(liked_member_ids)
+        print(liked_member_name)
+        print(liked_member_last_name)
+
+        return render_template('home.html', username=username, liked_member_ids=liked_member_ids,
+                               liked_member_name=liked_member_name, liked_member_last_name=liked_member_last_name)
 
     else:
         return render_template('homepage.html')
@@ -207,15 +300,24 @@ def get_congress_member():
 
     members = data['results'][0]['members']
 
-    return render_template('search/congress.html', id=id, first_name=first_name, last_name=last_name, members=members)
+    # liked_members_ids = [likes.id for govmembers in g.user.likes]
+
+    return render_template('search/congress.html',
+                           members=members,
+                           )
 
 
 @app.route('/search/member/<member_id>')
 def get_member_info(member_id):
     """Retrieve government official individual data on link click"""
 
+    params = {
+        'limit': 20,
+        'offset': 100
+    }
+
     res = requests.get(
-        f"{MEMBER_VOTE_POSITION_API}{member_id}/votes.json", headers={'X-API-Key': key})
+        f"{MEMBER_VOTE_POSITION_API}{member_id}/votes.json", headers={'X-API-Key': key}, params=params)
 
     response = requests.get(f"{BASE_URL}/members/{member_id}.json",
                             headers={'X-API-Key': key})
@@ -227,10 +329,6 @@ def get_member_info(member_id):
     # return data
     members_data = data['results'][0]['votes']
 
-    # split bill and congress session info to be used to navigate to individual bill
-    # id_no = member_id.split('-')[0]
-    # congress_no = member_id.split('-')[1]
-
     return render_template('search/officials_voting.html', members_data=members_data, member_id=member_id, member_contact_data=member_contact_data)
 
 
@@ -238,10 +336,14 @@ def get_member_info(member_id):
 def get_bill_info():
     """Retrieve all bill information"""
 
+    params = {
+        'offset': 300
+    }
+
     search_term = request.args['search-form-input']
     parsed_search_term = quote(search_term)
-    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"&offset=200", headers={
-                       'X-API-key': key})
+    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"", headers={
+                       'X-API-key': key}, params=params)
     data = res.json()
     # return data
     # print(parsed_search_term)
