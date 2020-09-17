@@ -2,12 +2,12 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-6 mt-5 logo-container">
+        <div class="col-md-6 mt-5 logo-container">
         <div class="home-hero">
             <img class="website-logo img-fluid" src="/static/images/HatchfulExport-All/logo.png" alt="website-logo">
         </div>
         </div>
-        <div class="col-6 mt-5 px-4 pt-4 text-center form-container">
+        <div class="col-md-6 mt-5 px-4 pt-4 text-center form-container">
             <h1 class="font-weight-bold display-3">Welcome!</h1>
             <h2 class="mt-3 px-5 font-weight-light form-lead">Quickly gather government voting records. To begin search above, or create an account to save and share your searches</h2>
             <a href="/signup" id="signup-btn" class="btn btn-success mt-4">Sign Up</a>
@@ -28,7 +28,7 @@
                 <div class="form-row justify-content-center mt-4">
                   <div class="col-auto mt-2">
                     <label class="sr-only" for="inline-form-input">Search Term</label>
-                    <input type="text" class="form-control mr-2" name="search-form-input" id="inline-form-input" placeholder="Keyword">
+                    <input type="text" class="form-control mr-2" name="search-form-input" id="inline-form-input" placeholder="Keyword" required>
                   </div>
                   <div class="col-auto mt-2">
                     <button id="search-button-bill" type="submit" class="btn btn-success">Search</button>

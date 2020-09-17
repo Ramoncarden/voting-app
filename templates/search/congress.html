@@ -26,15 +26,29 @@
               <td> {{ member['first_name'] }} </td>
               <td> {{ member['last_name'] }}</td>
               {% if g.user %}
-              <td class="text-right logged-in text-center"><form method="POST" action="/users/like?member_id={{member['id']}}&first_name={{member['first_name']}}&last_name={{member['last_name']}}" class="items-like">
-                <button class="
-                  btn 
-                  btn-sm">
-                <i class="fas fa-star"></i> 
-                </button></form></td>
-              {% endif %}
+                {% if member.id in liked_members_ids %}
+                <td class="text-right logged-in text-center"><form method="POST" action="/users/like/{{member['id']}}/delete" class="items-like">
+                  <button class="
+                    btn 
+                    btn-sm
+                    btn-info
+                    text-warning
+                  ">
+                {% else %}
+                <td class="text-right logged-in text-center"><form method="POST" action="/users/like?member_id={{member['id']}}&first_name={{member['first_name']}}&last_name={{member['last_name']}}" class="items-like">
+                  <button class="
+                    btn 
+                    btn-sm
+                    btn-primary
+                  ">
+                {% endif %}   
+                <i class="fas fa-star"></i>
+                </button>
+              </form>
+            </td>
+            {% endif %} 
           </tr>
-          {% endfor %}
+        {% endfor %}
       </tbody> 
   </table>
 </div>

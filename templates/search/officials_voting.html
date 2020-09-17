@@ -35,7 +35,11 @@
                 <strong>Next election:</strong> {{member_contact_data['roles'][0]['next_election']}}
               </div>
           <div class="card-footer p-2">
-            <span id="contact-link" class="ml-1"><a href="{{member_contact_data['roles'][0]['contact_form']}}" target="_blank">Contact<i class="fas fa-envelope ml-1"></i></a></span>
+            {% if request.endpoint == '/search' %}
+              <span id="contact-link" class="ml-1"><a href="{{member_contact_data['roles'][0]['contact_form']}}" target="_blank">Contact<i class="fas fa-envelope ml-1"></i></a></span>
+            {% else %}
+              <span id="contact-link" class="ml-1"><a href="{{member_contact_data['url']}}" target="_blank">Contact<i class="fas fa-envelope ml-1"></i></a></span>
+            {% endif %}
               <span class="m-1 pb-1"><a href="https://facebook.com/{{member_contact_data['facebook_account']}}" target="_blank"><img class="social-icon" src="/static/images/f-Logos-2019-1/f_logo_online_04_2019-1/color/PNG/f_logo_RGB-Blue_58.png" alt="Link to Facebook"></a></span>
               <span class="m-1 pb-1"><a href="https://twitter.com/{{member_contact_data['twitter_account']}}" target="_blank"><img class="social-icon" src="/static/images/Twitter Social Icons/Twitter Social Icons/Twitter_SocialIcon_RoundedSquare/Twitter_Social_Icon_Rounded_Square_Color.png" alt="Link to twitter"></a></span>
               <span class="m-1"><a href="https://youtube.com/{{member_contact_data['youtube_account']}}" target="_blank"><img class="youtube-icon" src="/static/images/youtube_full_color_icon/social/64px/red/youtube_social_icon_red.png" alt="Link to Youtube"></a></span>
@@ -46,22 +50,52 @@
   </div>
   <hr class="my-5">
   <h2 id="voting-records" class="display-4 text-center my-5 py-3">Voting records</h2>
+  <nav aria-label="Voting Records navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
   {% for record in members_data %}
-    <div class="row justify-content-center mt-3">
-      <div class="card bg-white w-75 my-4">
-        <div class="card-header font-weight-bold">
-          <a href="/search/bill/{{record['bill']['bill_id']}}">{{record['bill']['bill_id']}}</a>
-        </div>
-        <div class="card-body bg-info">
-          <h5 class="card-title">Bill info - <span class="text-primary">{{record['bill']['title']}}</span></h5>
-          <p class="card-text"><strong>Vote description: </strong>{{record['description']}}</p>
-          <p class="card-text"><strong>Date of vote: </strong>{{record['date']}}</p>
-          <p class="card-text"><strong>Vote result: </strong>{{record['result']}}</p>
-          <p class="card-text"><strong>Latest action: </strong>{{record['bill']['latest_action']}}</p>
-          <p class="card-text"><strong>Voting position: </strong><strong><u>{{record['position']}}</u></strong></p>
+    
+    {% for item in record['results'][0]['votes'] %}
+    
+      <div class="row justify-content-center mt-3">
+        <div class="card bg-white w-75 my-4">
+          <div class="card-header font-weight-bold">         
+            <a href="/search/bill/{{item['bill']['bill_id']}}">{{item['bill']['bill_id']}}</a>
+          </div>
+          <div class="card-body bg-info">
+            <h5 class="card-title">Bill info - <span class="text-primary">{{item['bill']['title']}}</span></h5>
+            <p class="card-text"><strong>Vote description: </strong>{{item['description']}}</p>
+            <p class="card-text"><strong>Date of vote: </strong>{{item['date']}}</p>
+            <p class="card-text"><strong>Vote result: </strong>{{item['result']}}</p>
+            <p class="card-text"><strong>Latest action: </strong>{{item['bill']['latest_action']}}</p>
+            <p class="card-text"><strong>Voting position: </strong><strong><u>{{item['position']}}</u></strong></p>
+          </div>
         </div>
       </div>
-    </div>
-
-{% endfor %}
+    {% endfor %}
+  {% endfor %}
+  <nav aria-label="Voting Records navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
 {% endblock %}
+
