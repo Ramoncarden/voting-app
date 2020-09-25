@@ -17,7 +17,6 @@ ALL_MEMBERS = 'https://api.propublica.org/congress/v1/116/senate/members.json'
 MEMBER_VOTE_POSITION_API = 'https://api.propublica.org/congress/v1/members/'
 BILL_API = 'https://api.propublica.org/congress/v1/bills/search.json'
 
-# SPECIFIC_BILL_API = 'https://api.propublica.org/congress/v1/{congress}/bills'
 
 CURR_USER_KEY = 'curr_user'
 
@@ -40,7 +39,7 @@ connect_db(app)
 db.create_all()
 
 # *************************************************
-# User signup, login, and logout
+# User signup, login, like, and logout
 
 
 @app.before_request
@@ -131,8 +130,6 @@ def add_like():
     first_name = request.args.get('first_name')
     last_name = request.args.get('last_name')
 
-    # search = GovMembers.query.get(member_id)
-
     if GovMembers.query.get(member_id):
         new_like = Likes(user_id=g.user.id, item_id=member_id)
     else:
@@ -146,7 +143,6 @@ def add_like():
 
     db.session.add(new_like)
     db.session.commit()
-    # liked_msg_ids = [msg.id for msg in g.user.likes]
 
     return redirect('/')
 
@@ -173,17 +169,6 @@ def remove_like(like_id):
     db.session.commit()
     return redirect('/')
 
-    # user_likes = g.user_likes
-
-    # if liked_item in user_likes:
-    #     g.user.likes = [
-    #         like for like in user_likes if like != liked_item]
-    # else:
-    #     g.user.likes.append(liked_item)
-
-    # db.session.commit()
-    # return redirect('/')
-
 
 @app.route('/users/delete', methods=['POST'])
 def delete_user():
@@ -209,10 +194,6 @@ def logout():
 
     flash("You have successfully logged out", 'success')
     return redirect('/login')
-
-
-# *****************************************************
-# General User routes and search routes
 
 
 # *****************************************************
@@ -252,22 +233,12 @@ def show_homepage():
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """Return page not found if error"""
     return render_template('404.html'), 404
 
 
-# @app.route('/search/member')
-# def do_search():
-#     """Handle search data and send request to API"""
-
-#     response = requests.get(f"{BASE_URL}/members/B001267.json",
-#                             headers={'X-API-Key': key})
-#     data = response.json()
-#     first_name = data['results'][0]['first_name']
-#     last_name = data['results'][0]['last_name']
-
-    #   g.user.likes.values_list('id')
-
-#     return data
+# *****************************************************
+# General search routes and specific item search routes
 
 
 @app.route('/search')
@@ -289,7 +260,6 @@ def get_gov_official():
 
     if g.user:
         liked_members_ids = [govmember.id for govmember in g.user.likes]
-        print(liked_members_ids)
         return render_template('search/gov-officials.html',
                                members=members, liked_members_ids=liked_members_ids)
 
@@ -304,8 +274,6 @@ def get_congress_member():
                        headers={'X-API-Key': key})
 
     data = res.json()
-
-    # user_likes = g.user.likes
 
     id = [member['id'] for member in data['results'][0]['members']]
     first_name = [member['first_name']
@@ -338,29 +306,32 @@ def get_member_info(member_id):
     member_contact_data = response_data['results'][0]
 
     res_object = []
-    offset = 0
-    while offset <= 60:
-        res = requests.get(
-            f"{MEMBER_VOTE_POSITION_API}{member_id}/votes.json?offset={offset}", headers={'X-API-Key': key})
-        data = res.json()
-        res_object.append(data)
-        offset += 20
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    offset = page * 20
+
+    res = requests.get(
+        f"{MEMBER_VOTE_POSITION_API}{member_id}/votes.json?offset={offset}", headers={'X-API-Key': key})
+    data = res.json()
+    res_object.append(data)
 
     members_data = res_object
 
-    # page = request.args.get(get_page_parameter(), type=int, default=1)
-    # page = request.args.get('page', 0, type=int)
-    # page_size = 20
+    # if the results returned are equal 20, that is the limit, you set the total pagination to be offset + 20
+    if len(members_data[0]['results'][0]['votes']) == 20:
+        total = offset + 20
+    else:
+        # otherwise, set the total to be equal the current offset, so you don't have a next page
+        total = offset
 
-    # pagination = Pagination(
-    #     page=page, total=members_data.count(0), search=search, record_name='members_data')
-    # return members_data
+    pagination = Pagination(page=page, per_page=20, total=total,
+                            css_framework='bootstrap4', prev_label='Previous', next_label='Next')
 
     return render_template('search/officials_voting.html',
                            members_data=members_data,
                            member_id=member_id,
                            member_contact_data=member_contact_data,
                            res_object=res_object,
+                           pagination=pagination
                            )
 
 
@@ -368,21 +339,33 @@ def get_member_info(member_id):
 def get_bill_info():
     """Retrieve all bill information"""
 
-    params = {
-        'offset': 300
-    }
-
     search_term = request.args['search-form-input']
     parsed_search_term = quote(search_term)
-    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"", headers={
-        'X-API-key': key}, params=params)
+
+    res_object = []
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    offset = page * 20
+
+    res = requests.get(f"{BILL_API}?query=\"{parsed_search_term}\"&offset={offset}", headers={
+        'X-API-key': key})
     data = res.json()
-    # return data
-    # print(parsed_search_term)
+    res_object.append(data)
+
     search_results = data['results']
     bill_data = data['results'][0]['bills']
 
-    return render_template('search/bill-voting.html', bill_data=bill_data, search_results=search_results)
+    search_data = res_object
+
+    if len(search_data[0]['results'][0]['bills']) == 20:
+        total = offset + 20
+    else:
+        # otherwise, set the total to be equal the current offset, so you don't have a next page
+        total = offset
+
+    pagination = Pagination(page=page, per_page=20, total=total,
+                            css_framework='bootstrap4', prev_label='Previous', next_label='Next')
+
+    return render_template('search/bill-voting.html', bill_data=bill_data, search_results=search_results, search_data=search_data, pagination=pagination)
 
 
 @app.route('/search/bill/<bill_id>')
