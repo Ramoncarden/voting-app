@@ -16,6 +16,7 @@ Flask-DebugToolbar==0.11.0
 flask-paginate==0.7.0
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
+gunicorn==20.0.4
 idna==2.10
 ipython==7.16.1
 ipython-genutils==0.2.0

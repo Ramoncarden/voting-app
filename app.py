@@ -33,7 +33,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'secert_voter2020')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '#secert_voter2020')
 
 connect_db(app)
 db.create_all()
