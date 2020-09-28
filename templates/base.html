@@ -14,45 +14,45 @@
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="/static/stylesheets/styles.css">
     <link rel="stylesheet" href="/static/stylesheets/bootstrap_theme.css">
+    
 
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
 
 </head>
 <body class="{% block body_class %}{% endblock %}">
-    <nav class="navbar navbar-expand-md justify-content-center">
+    <nav class="navbar navbar-expand-lg justify-content-center">
         <div class="container col-md-9 offset-md-1.5">
-          <div class="navbar-header">
-            <a href="/" class="navbar-brand">
+          <div class="navbar-header col-lg-6">
+            
+            <a href="/" class="navbar-brand custom-class">
               <img src="/static/images/HatchfulExport-All/pinterest_profile_image.png" alt="logo" id="logo-thumbnail">
               <span class="ml-3" id='brand-name'>Informed Voter</span>
             </a>
+            <button type="button" class="navbar-toggler text-primary ml-3" data-toggle="collapse" data-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon bg-info"><i class="fas fa-bars mt-1"></i></span>
+            </button>
           </div>
-          <ul class="nav navbar-nav navbar-center">
-            {% if request.endpoint != None %}
-            <li class="nav-item active nav-left"><a class="nav-link" href="/search">Search</a></li>
-              <!-- <form class="navbar-form navbar-center" action="/users">
-                <input name="q" class="form-control" placeholder="Search Records" id="search"> -->
-                <!-- <button class="btn btn-default"> -->
-                  <!-- <span class="fa fa-search"></span> -->
-                <!-- </button> -->
-              <!-- </form> -->
-
-            </li>
-            {% endif %}
-            {% if not g.user %}
-            <li class="nav-item active nav-left"><a class="nav-link" href="/signup">Sign up</a></li>
-            <li class="nav-item active nav-left"><a class="nav-link" href="/login">Log in</a></li>
-            {% else %}
+          <div class="collapse navbar-collapse justify-content-end" id="navCollapse">
             
-            <li class="nav-item active nav-left"><a class="nav-link" href="/logout">Log out</a></li>
-            {% endif %}
-          </ul>
+            <ul class="nav navbar-nav navbar-center mr-3">
+              {% if request.endpoint != None %}
+              <li class="nav-item active nav-left"><a class="nav-link" href="/search">Search</a></li>
+              {% endif %}
+              {% if not g.user %}
+              <li class="nav-item active nav-left"><a class="nav-link" href="/signup">Sign up</a></li>
+              <li class="nav-item active nav-left"><a class="nav-link" href="/login">Log in</a></li>
+              {% else %}
+              
+              <li class="nav-item active nav-left"><a class="nav-link" href="/logout">Log out</a></li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
     </nav>
     <hr class="nav-hr mt-0 ml-4 mr-4">
     
 
-    <div class="container mt-5"> 
+    <div class="container mt-5" id="main-content-container"> 
         {% for category, message in get_flashed_messages(with_categories=True) %}
         <div class="alert alert-{{category}} mt-3">{{message}}</div>
         {% endfor %}

@@ -1,5 +1,3 @@
-/* background-color: #f1f1ef; */
-
 body {
   background-color: #fcfcfa !important;
 }
@@ -25,6 +23,12 @@ table td {
 
 .no-user {
   width: 29.33%;
+}
+
+.navbar-toggler {
+  float: right;
+  height: 40px;
+  width: 40px;
 }
 
 .logged-in {
@@ -57,6 +61,7 @@ table td {
 #hr-content {
   background: #fff;
   padding: 0 10px;
+  font-size: calc(1em + 1vw);
 }
 
 .website-logo {
@@ -209,6 +214,17 @@ table td {
   background-color: #fff;
 }
 
+li.page-item {
+  display: none;
+}
+
+li.page-item:first-child {
+  display: inline;
+}
+
+li.page-item:last-child {
+  display: inline;
+}
 .pagination-page-info {
   padding: .6em;
   padding-left: 0;
@@ -223,4 +239,60 @@ table td {
   padding-left: 2px;
   padding: .1em .25em;
   font-size: 150%;
+}
+
+/* **********Media querys **************** */
+
+@media all and (max-width: 1239px) {
+  .custom-class {
+    width: 50%;
+  }
+}
+
+@media (max-width: 960px) {
+  #homepage-bottom-hr {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  .container {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 960px) {
+  #homepage-bottom-hr {
+    font-size: 1.6rem;
+    width: 100%;
+  }
+
+  .container {
+    min-width: 900px;
+  }
+
+  .vote-card {
+    width: 75%;
+  }
+}
+
+@media all and (max-width: 570px) {
+  .social-icon {
+    min-width: 9%;
+  }
+  .youtube-icon {
+    min-width: 10%;
+    padding-top: 3px;
+  }
+
+  .vote-card {
+    min-width: 90%;
+  }
+
+  #favorites-table {
+    width: 100%;
+  }
+
+  .logged-in {
+    width: 25%;
+  }
 }

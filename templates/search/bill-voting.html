@@ -1,29 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for bill in bill_data %}
-  <div class="row justify-content-center mt-3">
-    <div class="card bg-white w-75 my-4">
-      <div class="card-header font-weight-bold">
-        <a href="/search/bill/{{bill['bill_id']}}">{{bill['bill_id']}}</a>
+
+  <form action="{{url_for('get_bill_info')}}" method="GET">
+    <div class="form-row text-center justify-content-center my-5">
+      <div class="col-6">
+        <input type="text" class="form-control" name="search-form-input" placeholder="Search" required>
       </div>
-      <div class="card-body bg-secondary">
-        <h5 class="card-title">{{bill['short_title']}}</h5>
-        <p class="card-text">{{bill['summary']}}</p>
-        <div><strong class="mr-2">Bill active:  </strong>{{bill['active']}}</div>
-        <div><strong class="mr-2">Committee: </strong>{{bill['committees']}}</div>
-        <div><strong class="mr-2">CongressGov url: </strong><a href="{{bill['congressdotgov_url']}}">{{bill['congressdotgov_url']}}</a></div>
-        <div><strong class="mr-2">Govtrack url: </strong><a href="{{bill['govtrack_url']}}">{{bill['govtrack_url']}}</a></div>
-        <div><strong class="mr-2">Bill subject: </strong>{{bill['primary_subject']}}</div>
-        <div><strong class="mr-2">Bill introduced: </strong>{{bill['introduced_date']}}</div>
-        <div><strong class="mr-2">Bill last vote: </strong>{{bill['last_vote']}}</div>
-        <div><strong class="mr-2">Bill last major action: </strong>{{bill['latest_major_action']}}</div>
-        <div><strong class="mr-2">Last Vote: </strong>{{bill['last_vote']}}</div>
-        <div><strong class="mr-2">Title: </strong>{{bill['title']}}</div>
-        <div><strong class="mr-2">Bill Passage: </strong>{{bill['senate_passage']}}</div>
+      <div class="col-2">
+        <button type="submit" class="btn btn-info mb-2">Search</button>
       </div>
     </div>
-  </div>
+  </form>
 
+
+<hr class="mb-5">
+
+
+<nav aria-label="Search Results Navigation">
+  <ul class="pagination justify-content-center">
+   
+    {{ pagination.links }}
+    
+  </ul>
+</nav>
+{% for item in search_data %}
+
+  {% for bill in item['results'][0]['bills'] %}
+    <div class="row justify-content-center mt-3">
+      <div class="card bg-white my-4 vote-card">
+        <div class="card-header font-weight-bold">
+          <a href="/search/bill/{{bill['bill_id']}}">{{bill['bill_id']}}</a>
+        </div>
+        <div class="card-body bg-secondary">
+          <h5 class="card-title">{{bill['short_title']}}</h5>
+          <p class="card-text">{{bill['summary']}}</p>
+          <div><strong class="mr-2">Bill active:  </strong>{{bill['active']}}</div>
+          <div><strong class="mr-2">Committee: </strong>{{bill['committees']}}</div>
+          <div><strong class="mr-2">CongressGov url: </strong><a href="{{bill['congressdotgov_url']}}">{{bill['congressdotgov_url']}}</a></div>
+          <div><strong class="mr-2">Govtrack url: </strong><a href="{{bill['govtrack_url']}}">{{bill['govtrack_url']}}</a></div>
+          <div><strong class="mr-2">Bill subject: </strong>{{bill['primary_subject']}}</div>
+          <div><strong class="mr-2">Bill introduced: </strong>{{bill['introduced_date']}}</div>
+          <div><strong class="mr-2">Bill last vote: </strong>{{bill['last_vote']}}</div>
+          <div><strong class="mr-2">Bill last major action: </strong>{{bill['latest_major_action']}}</div>
+          <div><strong class="mr-2">Last Vote: </strong>{{bill['last_vote']}}</div>
+          <div><strong class="mr-2">Title: </strong>{{bill['title']}}</div>
+          <div><strong class="mr-2">Bill Passage: </strong>{{bill['senate_passage']}}</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 {% endfor %}
+<nav aria-label="Search Results Navigation">
+  <ul class="pagination justify-content-center">
+   
+    {{ pagination.links }}
+    
+  </ul>
+</nav>
 {% endblock %}

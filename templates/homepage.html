@@ -2,26 +2,32 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-6 mt-5 logo-container">
+        <div class="col-lg mt-5 logo-container">
         <div class="home-hero">
             <img class="website-logo img-fluid" src="/static/images/HatchfulExport-All/logo.png" alt="website-logo">
         </div>
         </div>
-        <div class="col-md-6 mt-5 px-4 pt-4 text-center form-container">
+        <div class="col-lg mt-5 px-4 pt-4 text-center form-container">
             <h1 class="font-weight-bold display-3">Welcome!</h1>
             <h2 class="mt-3 px-5 font-weight-light form-lead">Quickly gather government voting records. To begin search above, or create an account to save and share your searches</h2>
-            <a href="/signup" id="signup-btn" class="btn btn-success mt-4">Sign Up</a>
+            <div class="d-flex justify-content-center">
+                <a href="/signup" id="signup-btn" class="btn flex-grow-1 flex-lg-grow-0 btn-success mt-4">Sign Up</a>
+            </div>
+            
+            
         </div>
     </div>
       <div class="row mt-5 justify-content-center">
-        <h2 class="mt-5" id="homepage-bottom-hr"><span class="text-primary font-weight-light" id="hr-content">Or begin your search below</span></h2>
-    </div>
+          <h2 class="mt-5" id="homepage-bottom-hr"><span class="text-primary font-weight-light" id="hr-content">Or begin your search below</span></h2> 
+      </div>
     <div class="row">
-        <div class="col-6 text-center mt-5">
+        <div class="col-12 col-lg-6 text-center mt-5">
             <h2 class="mt-3 search-title">Search by government official</h2>
-            <a class="mt-4 btn btn-large btn-success" id="search-button-official" href="/search">Search by official</a>
+            <div class="d-flex justify-content-center">
+              <a class="mt-4 btn btn-large btn-success flex-grow-1 flex-lg-grow-0" id="search-button-official" href="/search">Search by official</a>
+            </div>
         </div>
-        <div class="col-6 text-center mt-5">
+        <div class="col-12 col-lg-6 text-center mt-5">
             <h2 class="mt-3 search-title">Search bills by keyword</h2>
             <!-- <a class="mt-4 btn btn-large btn-success search-btn" id="search-button-bill" href="/search/bill">Search by bill</a> -->
             <form action="{{url_for('get_bill_info')}}" method="GET">
